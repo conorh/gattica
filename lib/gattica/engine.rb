@@ -145,6 +145,7 @@ module Gattica
 
     def do_http_get(query_string)
       response, data = @http.get(query_string, @headers)
+      data = response.body if data == "" || data.nil? # Ruby 1.9.3 http.post does not return the body
 
       # error checking
       if response.code != '200'
